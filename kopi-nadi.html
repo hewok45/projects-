@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kopi Nadi — Kopi Susu Literan Asal Indonesia</title>
+    <meta name="description" content="Kopi Nadi meracik biji kopi asli Indonesia jadi kopi susu literan, diseduh untuk ritme harianmu.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+/* ==================================================
+   RESET & TOKENS
+   ================================================== */
+
+:root {
+    --espresso: #2a1b12;
+    --ink: #241a14;
+    --cream: #f3e8d2;
+    --paper: #faf4e6;
+    --gold: #c89b3c;
+    --gold-hover: #b3872f;
+    --forest: #445c42;
+    --muted: #7a6c5d;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+
+    --transition: all 0.25s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    line-height: 1.6;
+    background-color: var(--paper);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* ==================================================
+   NAVBAR
+   ================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    padding: 22px 0;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background-color: var(--paper);
+    box-shadow: 0 2px 14px rgba(42, 27, 18, 0.08);
+    padding: 14px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--espresso);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--gold-hover);
+}
+
+
+/* ==================================================
+   BUTTONS
+   ================================================== */
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--espresso);
+    color: var(--paper) !important;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--gold-hover);
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--muted);
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background-color: var(--cream);
+}
+
+
+/* ==================================================
+   HAMBURGER
+   ================================================== */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--ink);
+    border-radius: 2px;
+}
+
+
+/* ==================================================
+   HERO
+   ================================================== */
+
+.hero {
+    padding: 160px 0 100px;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 70%);
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-text {
+    flex: 1.1;
+}
+
+.hero-text h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 3rem;
+    line-height: 1.15;
+    color: var(--espresso);
+    margin-bottom: 22px;
+}
+
+.hero-text p {
+    font-size: 1.08rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.cup-illustration {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+}
+
+.steam {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 4;
+    stroke-linecap: round;
+    opacity: 0.7;
+    transform-origin: center;
+    animation: drift 4s ease-in-out infinite;
+}
+
+.steam-2 {
+    animation-delay: 0.6s;
+}
+
+.steam-3 {
+    animation-delay: 1.2s;
+}
+
+@keyframes drift {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-8px); opacity: 0.3; }
+}
+
+.order-ticket {
+    position: absolute;
+    bottom: 10px;
+    left: -10px;
+    background-color: var(--paper);
+    border: 1px dashed var(--muted);
+    border-radius: 3px;
+    padding: 12px 16px;
+    transform: rotate(-4deg);
+    box-shadow: 0 8px 20px rgba(42, 27, 18, 0.12);
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ticket-item {
+    font-weight: 600;
+    color: var(--espresso);
+}
+
+.ticket-price {
+    font-family: 'Courier New', monospace;
+    color: var(--forest);
+}
+
+
+/* ==================================================
+   SECTION TITLE
+   ================================================== */
+
+.section-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    text-align: center;
+    font-size: 2.1rem;
+    color: var(--espresso);
+    margin-bottom: 48px;
+}
+
+
+/* ==================================================
+   MENU
+   ================================================== */
+
+.menu {
+    padding: 90px 0;
+    background-color: var(--cream);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.menu-card {
+    background-color: var(--paper);
+    border-top: 2px dashed var(--muted);
+    border-bottom: 2px dashed var(--muted);
+    padding: 26px 24px;
+}
+
+.menu-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.menu-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--espresso);
+}
+
+.menu-card .price {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--forest);
+    white-space: nowrap;
+}
+
+.menu-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+
+/* ==================================================
+   ABOUT / CERITA
+   ================================================== */
+
+.about {
+    padding: 90px 0;
+    background-color: var(--paper);
+}
+
+.about-container {
+    max-width: 700px;
+}
+
+.about-text {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+}
+
+.origin-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.origin-list li {
+    background-color: var(--cream);
+    color: var(--espresso);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* ==================================================
+   LOCATIONS / KEDAI
+   ================================================== */
+
+.locations {
+    padding: 90px 0;
+    background-color: var(--espresso);
+    color: var(--paper);
+}
+
+.locations .section-title {
+    color: var(--paper);
+}
+
+.locations-text {
+    text-align: center;
+    color: var(--cream);
+    opacity: 0.75;
+    margin-bottom: 44px;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.location-card {
+    border: 1px solid rgba(243, 232, 210, 0.2);
+    padding: 24px;
+    border-radius: 4px;
+}
+
+.location-card h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--gold);
+}
+
+.location-card p {
+    color: var(--cream);
+    opacity: 0.8;
+    font-size: 0.92rem;
+}
+
+
+/* ==================================================
+   CONTACT / PESAN
+   ================================================== */
+
+.contact {
+    padding: 90px 0;
+    background-color: var(--cream);
+    text-align: center;
+}
+
+.contact-text {
+    color: var(--muted);
+    margin-bottom: 26px;
+}
+
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+footer {
+    text-align: center;
+    padding: 24px 0;
+    background-color: var(--paper);
+    border-top: 1px solid var(--cream);
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--paper);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(42, 27, 18, 0.1);
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-text h1 {
+        font-size: 2.3rem;
+    }
+
+    .order-ticket {
+        left: 50%;
+        transform: translateX(-50%) rotate(-3deg);
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+
+            <a href="#hero" class="logo">Kopi Nadi</a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero">Beranda</a>
+                <a href="#menu">Menu</a>
+                <a href="#cerita">Cerita Kami</a>
+                <a href="#kedai">Kedai</a>
+                <a href="#pesan" class="btn-primary">Pesan Sekarang</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Buka menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+
+            <div class="hero-text">
+                <h1>Kopi yang ngerti ritme harimu</h1>
+
+                <p>
+                    Kopi Nadi meracik biji kopi asli Indonesia — Gayo, Toraja,
+                    Kintamani — jadi kopi susu literan yang gampang ditemukan,
+                    dari pagi ngantor sampai lembur malam.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-primary">Lihat Menu</a>
+                    <a href="#cerita" class="btn-secondary">Cerita Kami</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <svg class="cup-illustration" viewBox="0 0 360 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi cangkir kopi Kopi Nadi">
+                    <path class="steam steam-1" d="M120 70 C 105 55, 135 40, 120 20" />
+                    <path class="steam steam-2" d="M170 60 C 155 45, 185 30, 170 10" />
+                    <path class="steam steam-3" d="M220 70 C 205 55, 235 40, 220 20" />
+
+                    <ellipse cx="170" cy="330" rx="120" ry="16" fill="var(--ink)" opacity="0.12" />
+
+                    <path d="M70 140 L 100 320 Q 102 340 122 340 L 218 340 Q 238 340 240 320 L 270 140 Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4" />
+                    <path d="M80 150 L 260 150" stroke="var(--ink)" stroke-width="3" opacity="0.25" />
+                    <ellipse cx="170" cy="140" rx="100" ry="18" fill="var(--gold)" stroke="var(--ink)" stroke-width="4" />
+                    <ellipse cx="170" cy="140" rx="80" ry="10" fill="var(--espresso)" />
+
+                    <path d="M258 165 C 305 165, 310 220, 265 225" fill="none" stroke="var(--ink)" stroke-width="4" />
+                </svg>
+
+                <div class="order-ticket">
+                    <span class="ticket-item">Kopi Susu Gula Aren</span>
+                    <span class="ticket-price">Rp18.000</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== MENU ==================== -->
+    <section class="menu" id="menu">
+        <div class="container">
+
+            <h2 class="section-title">Menu favorit</h2>
+
+            <div class="menu-grid">
+
+                <div class="menu-card">
+                    <div class="menu-card-top">
+                        <h3>Kopi Susu Gula Aren</h3>
+                        <span class="price">Rp18.000</span>
+                    </div>
+                    <p>Espresso robusta lokal, susu segar, gula aren asli Yogyakarta.</p>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-card-top">
+                        <h3>Americano Gayo</h3>
+                        <span class="price">Rp15.000</span>
+                    </div>
+                    <p>Single origin Gayo, diseduh ringan untuk rasa kopi yang jujur.</p>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-card-top">
+                        <h3>Cappuccino Toraja</h3>
+                        <span class="price">Rp22.000</span>
+                    </div>
+                    <p>Milk foam tebal, biji Toraja medium roast, pas buat pagi hari.</p>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-card-top">
+                        <h3>Kopi Tubruk Kintamani</h3>
+                        <span class="price">Rp13.000</span>
+                    </div>
+                    <p>Diseduh cara tradisional, kental dan earthy — buat yang cari nostalgia.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== CERITA ==================== -->
+    <section class="about" id="cerita">
+        <div class="container about-container">
+
+            <h2 class="section-title">Cerita kami</h2>
+
+            <p class="about-text">
+                Kopi Nadi lahir dari kebiasaan ngopi tongkrongan yang kami bawa
+                ke ritme kota. Setiap biji kopi kami datang langsung dari
+                petani, diroasting dalam batch kecil tiap minggu supaya
+                rasanya tetap konsisten dari kedai pertama sampai yang
+                terbaru.
+            </p>
+
+            <ul class="origin-list">
+                <li>Gayo, Aceh</li>
+                <li>Toraja, Sulawesi</li>
+                <li>Kintamani, Bali</li>
+            </ul>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== KEDAI ==================== -->
+    <section class="locations" id="kedai">
+        <div class="container">
+
+            <h2 class="section-title">Temukan kedai terdekat</h2>
+
+            <p class="locations-text">
+                Sedang buka di tiga kota, dengan kedai baru menyusul tiap
+                kuartal.
+            </p>
+
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>Jakarta</h3>
+                    <p>Kemang, Senopati, Kelapa Gading</p>
+                </div>
+                <div class="location-card">
+                    <h3>Bandung</h3>
+                    <p>Dago, Riau, Buah Batu</p>
+                </div>
+                <div class="location-card">
+                    <h3>Surabaya</h3>
+                    <p>Darmo, Kertajaya</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== PESAN ==================== -->
+    <section class="contact" id="pesan">
+        <div class="container">
+
+            <h2 class="section-title">Pesan sekarang</h2>
+
+            <p class="contact-text">
+                Tersedia lewat aplikasi Kopi Nadi dan mitra ojek online
+                favoritmu.
+            </p>
+
+            <button class="btn-primary" onclick="showAlert()">
+                Pesan via Aplikasi
+            </button>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023–2026 Kopi Nadi. Diseduh dengan biji kopi asli Indonesia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu after clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Order button action
+        function showAlert() {
+            alert('Terima kasih! Silakan buka aplikasi Kopi Nadi atau mitra ojek online favoritmu untuk memesan.');
+        }
+    </script>
+
+</body>
+
+</html>
